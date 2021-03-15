@@ -24,6 +24,7 @@ module OneSignal
       @filters           = params[:filters]
       @sounds            = params[:sounds]
       @buttons           = params[:buttons]
+      @include_player_ids = params[:include_player_ids]
     end
 
     def as_json options = {}
@@ -33,6 +34,7 @@ module OneSignal
         .merge(@sounds&.as_json(options) || {})
         .merge(@buttons&.as_json(options) || {})
         .merge(@included_targets&.as_json(options) || {})
+        .merge(@include_player_ids&.as_json(options) || {})
         .select { |_k, v| v.present? }
     end
   end
